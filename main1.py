@@ -16,9 +16,9 @@ def extract_fields(line):
         json_dict = json.loads(line)
         if all(k in json_dict for k in ["timestamp", "level", "message"]):
             return {
-                "timestamp": json_dict["timestamp"], 
-                "level": json_dict["level"].strip(), 
-                "message": json_dict["message"].strip()
+                "timestamp": str(json_dict["timestamp"]).strip(),
+                "level": str(json_dict["level"]).strip(),
+                "message": str(json_dict["message"]).strip()
             }
     except ValueError:
         pass # Fallback to plain text parsing
