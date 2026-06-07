@@ -31,6 +31,9 @@ def load_servers():
             with open(config_filename, "r") as f:
                 config_data = json.load(f)
                 urls = config_data.get("servers", [])
+                if not isinstance(urls, list):
+                    raise RuntimeError(f"Configuration Error: '{config_filename}' field 'servers' must be a list of URLs.")
+                urls = [u.strip() for u in urls if isinstance(u, str) and u.strip()]
                 if urls:
                     print(f"Loaded {len(urls)} servers from config file.")
                     return urls
