@@ -100,4 +100,4 @@ if __name__ == "__main__":
     print(f"Warnings:             {counts.get('WARNING', 0)}")
     print(f"Info:                 {counts.get('INFO', 0)}")
     print(f"Most frequent error:  \"{most_frequent_err}\"")
-    print(f"Failure timestamps:   {', '.join(failures[:5])}...") # Truncated for display
+    print(f"Failure timestamps:   {', '.join(failures[:5])}{'...' if len(failures) > 5 else ''}" if failures else "Failure timestamps:   None")
