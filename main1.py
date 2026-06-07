@@ -60,11 +60,9 @@ def get_stats(entries):
             time_part = entry["timestamp"].split()[-1]
             failure_timestamps.append(time_part)
 
-        # Feature-4: Store error/message frequencies
-        if msg in groups:
-            groups[msg] += 1
-        else:
-            groups[msg] = 1
+        # Feature-4: Store error/message frequencies (errors only)
+        if lvl == "ERROR":
+            groups[msg] = groups.get(msg, 0) + 1
 
     return { "stats": stats, "groups": groups, "failures": failure_timestamps }
 
